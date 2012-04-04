@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 build*
 nbproject*
 
@@ -11,6 +12,8 @@ nbproject*
 build/*
 nbproject/*
 
+=======
+>>>>>>> upstream/master
 *.class
 
 # Package Files #

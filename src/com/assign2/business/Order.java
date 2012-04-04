@@ -4,6 +4,7 @@
  */
 package com.assign2.business;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -12,10 +13,12 @@ import java.util.Date;
  */
 public class Order {
     private int orderId;
-    private int customerId;
+    private Customer customer;
     private Date date;
+    private ArrayList<OrderLine> orderItems;
 
     public Order() {
+        orderItems=new ArrayList<OrderLine>();
     }
 
     /**
@@ -28,22 +31,37 @@ public class Order {
     /**
      * @param orderId the orderId to set
      */
-    public void setOrderId(int orderId) {
+    public Order setOrderId(int orderId) {
         this.orderId = orderId;
+        return this;
     }
 
     /**
      * @return the customerId
      */
-    public int getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
     /**
-     * @param customerId the customerId to set
+     * @param customer the customerId to set
      */
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public Order setCustomer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public OrderLine[] getOrderItems() {
+        return orderItems.toArray(new OrderLine[1]);
+    }
+
+    public Order setOrderItems(OrderLine[] orderItems) {
+        ArrayList<OrderLine> items = new ArrayList<OrderLine>();
+        for (OrderLine item : items) {
+            items.add(item);
+        }
+        this.orderItems = items;
+        return this;
     }
 
     /**
@@ -56,8 +74,21 @@ public class Order {
     /**
      * @param date the date to set
      */
-    public void setDate(Date date) {
+    public Order setDate(Date date) {
         this.date = date;
+        return this;
+    }
+
+    public void addItem(Item item, int qty) {
+        orderItems.add(new OrderLine(this, item, qty));
+    }
+
+    public void removeItem(Item item) {
+        for (OrderLine line : orderItems) {
+            if (line.getItem().equals(item)){
+                orderItems.remove(item);
+            }
+        }
     }
 }
 

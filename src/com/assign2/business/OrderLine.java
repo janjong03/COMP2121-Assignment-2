@@ -10,13 +10,19 @@ package com.assign2.business;
  * @author janjong
  */
 public class OrderLine {
+<<<<<<< HEAD
 
     private int orderId;
     private int itemId;
+=======
+    private Order order;
+    private Item item;
+>>>>>>> upstream/master
     private int quantity;
     private double total;
 
     public OrderLine() {
+<<<<<<< HEAD
     }
 
     public OrderLine(int oId, int iID, int qty, double _total) {
@@ -26,31 +32,42 @@ public class OrderLine {
         itemId = itemObj.getItemId();
         quantity = qty;
         total = _total;
+=======
+>>>>>>> upstream/master
     }
 
-    public int getOrderId() {
-        return orderId;
+    public OrderLine(Order order, Item item, int qty) {
+        this.order = order;
+        this.item = item;
+        this.quantity = qty;
+        this.total = item.getPrice() * qty;
+    }
+
+    public Order getOrder() {
+        return order;
     }
 
     /**
-     * @param orderId the orderId to set
+     * @param order the orderId to set
      */
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public OrderLine setOrder(Order order) {
+        this.order = order;
+        return this;
     }
 
     /**
      * @return the itemId
      */
-    public int getItemId() {
-        return itemId;
+    public Item getItem() {
+        return item;
     }
 
     /**
-     * @param itemId the itemId to set
+     * @param item the itemId to set
      */
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public OrderLine setItem(Item item) {
+        this.item = item;
+        return this;
     }
 
     /**
@@ -63,8 +80,9 @@ public class OrderLine {
     /**
      * @param quantity the quantity to set
      */
-    public void setQuantity(int quantity) {
+    public OrderLine setQuantity(int quantity) {
         this.quantity = quantity;
+        return this;
     }
 
     /**
@@ -77,7 +95,8 @@ public class OrderLine {
     /**
      * @param total the total to set
      */
-    public void setTotal(double total) {
+    public OrderLine setTotal(double total) {
         this.total = total;
+        return this;
     }
 }

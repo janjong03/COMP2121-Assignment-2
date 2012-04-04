@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+//TODO: Data validation for all data access classes
 package com.assign2.data;
 
 import com.assign2.Utils;
@@ -28,12 +25,15 @@ public abstract class CommonAccess {
             Connection conn = DriverManager.getConnection(host, user, pass);
             connection = conn;
         } catch (SQLException ex) {
-            Utils.log_error(ex.getMessage());
+                Utils.log_error("Could not connect to database.");
+                System.exit(1);
         }
     }
-    
-    public static Connection dbConnect(){
-        if(connection == null) _dbConnect();
+
+    public static Connection dbConnect() {
+        if (connection == null) {
+            _dbConnect();
+        }
         return connection;
     }
 }

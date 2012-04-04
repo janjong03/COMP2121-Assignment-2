@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.assign2.data;
 
 import com.assign2.Utils;
@@ -10,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -39,7 +36,7 @@ public class CustomerAccess extends CommonAccess {
         Statement sqlStatement = conn.createStatement();
 
         String query = String.format("SELECT * FROM customer WHERE %s='%s';", column, value);
-        Utils.log_info("Executing SQL query: %s", query);
+        Utils.log_debug("Executing SQL query: %s", query);
         ResultSet resultSet = sqlStatement.executeQuery(query);
 
         if (!(resultSet.first())) {
@@ -53,9 +50,13 @@ public class CustomerAccess extends CommonAccess {
         customer.setAddress(resultSet.getString(ADDRESS));
         customer.setPhoneNumber(resultSet.getString(PHONE_NUMBER));
 
-        Utils.log_info("Returned customer information:\n\t\tFirst name: %s\n\t\tLast name: %s", customer.getFirstName(), customer.getLastName());
+        Utils.log_debug("Returned customer information:\n\t\tFirst name: %s\n\t\tLast name: %s", customer.getFirstName(), customer.getLastName());
 
         return customer;
+    }
+
+    public static void addNewCustomer(Customer customer) throws SQLException {
+        addNewCustomer(customer.getFirstName(), customer.getLastName(), customer.getAddress(), customer.getPhoneNumber());
     }
 
     public static void addNewCustomer(String firstName, String lastName, String address, String phoneNumber) throws SQLException {
@@ -65,9 +66,13 @@ public class CustomerAccess extends CommonAccess {
         String query = "INSERT INTO customer ";
         query += "(first_name, last_name, address, phone_number) ";
         query += String.format("VALUES('%s', '%s', '%s', '%s');", firstName, lastName, address, phoneNumber);
-        Utils.log_info("Executing SQL query: %s", query);
+        Utils.log_debug("Executing SQL query: %s", query);
 
         sqlStatement.executeUpdate(query);
+    }
+
+    public static void deleteCustomer(Customer customer) throws SQLException {
+        deleteCustomer(customer.getCustomerId());
     }
 
     public static void deleteCustomer(int customerId) throws SQLException {
@@ -75,9 +80,13 @@ public class CustomerAccess extends CommonAccess {
         Statement sqlStatement = conn.createStatement();
 
         String query = String.format("DELETE FROM customer WHERE customer_id='%s';", customerId);
-        Utils.log_info("Executing SQL query: %s", query);
+        Utils.log_debug("Executing SQL query: %s", query);
 
         sqlStatement.executeUpdate(query);
+    }
+
+    public static void updateCustomer(Customer customer, String column, String newValue) throws SQLException {
+        updateCustomer(customer.getCustomerId(), column, newValue);
     }
 
     public static void updateCustomer(int customerId, String column, String newValue) throws SQLException {
@@ -85,8 +94,29 @@ public class CustomerAccess extends CommonAccess {
         Statement sqlStatement = conn.createStatement();
 
         String query = String.format("UPDATE customer SET %s='%s' WHERE customer_id=%s", column, newValue, customerId);
-        Utils.log_info("Executing SQL query: %s", query);
+        Utils.log_debug("Executing SQL query: %s", query);
 
         sqlStatement.executeUpdate(query);
+    }
+    
+    public static Customer[] getCustomers() throws SQLException{
+        ArrayList<Customer> customerList = new ArrayList<Customer>();
+        Connection conn = dbConnect();
+        Statement sqlStatement = conn.createStatement();
+        
+        String query = "SELECT * FROM customer;";
+        ResultSet results = sqlStatement.executeQuery(query);
+        
+        while(results.next()){
+            Customer customer = new Customer();
+            customer.setCustomerId(results.getInt(CUSTOMER_ID));
+            customer.setFirstName(results.getString(FIRST_NAME));
+            customer.setLastName(results.getString(LAST_NAME));
+            customer.setAddress(results.getString(ADDRESS));
+            customer.setPhoneNumber(results.getString(PHONE_NUMBER));
+            customerList.add(customer);
+            Utils.log_debug("Retriving information for customer %s.",customer.getCustomerId());
+        }
+        return customerList.toArray(new Customer[1]);
     }
 }
