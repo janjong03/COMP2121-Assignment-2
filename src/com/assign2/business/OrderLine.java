@@ -10,31 +10,17 @@ package com.assign2.business;
  * @author janjong
  */
 public class OrderLine {
-<<<<<<< HEAD
 
-    private int orderId;
-    private int itemId;
-=======
     private Order order;
     private Item item;
->>>>>>> upstream/master
+
     private int quantity;
     private double total;
 
     public OrderLine() {
-<<<<<<< HEAD
+
     }
 
-    public OrderLine(int oId, int iID, int qty, double _total) {
-        Order orderObj = new Order();
-        Item itemObj = new Item();
-        orderId = orderObj.getOrderId();
-        itemId = itemObj.getItemId();
-        quantity = qty;
-        total = _total;
-=======
->>>>>>> upstream/master
-    }
 
     public OrderLine(Order order, Item item, int qty) {
         this.order = order;

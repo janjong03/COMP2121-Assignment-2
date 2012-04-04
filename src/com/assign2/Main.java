@@ -4,29 +4,25 @@
  */
 package com.assign2;
 
-<<<<<<< HEAD
+
 import com.assign2.data.CustomerAccess;
 import com.assign2.business.Customer;
-=======
+
 import com.assign2.data.ItemAccess;
 
->>>>>>> upstream/master
-/**
- *
- * @author Jason Recillo
- */
+
 public class Main {
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-<<<<<<< HEAD
+
 
       Customer a = new Customer();
       a= a.findCustomer("last", "james");
       a.removeCustomer(a);
 
-=======
+
         try {
             ItemAccess.getItemImage(1,true);
 //            Customer c1 = new Customer();
@@ -41,6 +37,6 @@ public class Main {
             Utils.log_error(ex.getMessage());
             ex.printStackTrace();
         }
->>>>>>> upstream/master
+
     }
 }

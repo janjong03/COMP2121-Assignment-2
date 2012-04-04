@@ -4,13 +4,7 @@
  */
 package com.assign2.business;
 
-<<<<<<< HEAD
-import com.assign2.data.CustomerAccess;
-import com.assign2.data.ItemAccess;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-=======
+
 import com.assign2.Utils;
 import com.assign2.data.ItemAccess;
 import com.assign2.data.OrderAccess;
@@ -19,7 +13,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
->>>>>>> upstream/master
+
 /**
  *
  * @author Jason Recillo
@@ -31,7 +25,7 @@ public class OrderHandler {
     public void processNewOrder() {
     }
 
-<<<<<<< HEAD
+
     public void addItemsToOrder(int itemId, int qty) {
         Item item= null;
         try {
@@ -39,11 +33,12 @@ public class OrderHandler {
         } catch (SQLException ex) {
             Logger.getLogger(OrderHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        addItemsToOrder( item, qty );
-=======
+       // addItemsToOrder( item, qty );
+    }
+
     public void addItemsToOrder(Order order, int itemId, int qty) throws SQLException {
         addItemsToOrder(order, ItemAccess.findItem(ItemAccess.ITEM_ID, String.valueOf(itemId)), qty);
->>>>>>> upstream/master
+
     }
 
     public void addItemsToOrder(Order order, Item item, int qty) {

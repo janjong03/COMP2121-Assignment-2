@@ -25,7 +25,7 @@ public class Customer {
     public Customer() {
     }
 
-<<<<<<< HEAD
+
     public Customer(String firstName, String lastName, String address, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,8 +34,7 @@ public class Customer {
 
     }
 
-=======
->>>>>>> upstream/master
+
     public int getCustomerId() {
         return customerId;
     }
@@ -85,12 +84,7 @@ public class Customer {
             throw new IllegalArgumentException("Phone number was not valid.");
         }
         return this;
-    }
-
-<<<<<<< HEAD
-
-
-    }
+    }   
 
    public void CreateCustomer(String firstName, String lastName, String address, String phoneNumber) {
         Customer newCustomer = new Customer(firstName, lastName, address, phoneNumber);
@@ -100,87 +94,16 @@ public class Customer {
     }
 
     
-    
-
-    public Customer findCustomer(String _column, String _value) {
-
-     
-        CustomerHandler _handler = new CustomerHandler();
-
-        String column = "";
-
-        switch (_column) {
-
-            case "first":
-
-                column = CustomerAccess.FIRST_NAME;
-
-                break;
-
-            case "last":
-
-                column = CustomerAccess.LAST_NAME;
-
-                break;
-
-            case "cNum":
-
-                column = CustomerAccess.CUSTOMER_ID;
-
-                break;
-            case "address":
-                column = CustomerAccess.ADDRESS;
-
-                break;
-
-        }
-        
-       return (_handler.findCusomter(column,  _value));
-
-        
-
-    }
-    
     public void removeCustomer(Customer customer)
     {   CustomerHandler _handler = new CustomerHandler();
     _handler.removeCustomer(customer.getCustomerId());        
     }
     
-    public void updateCustomer(Customer customer, String _column, String newValue)
-    { CustomerHandler _handler = new CustomerHandler();
-        String column = "";
-
-        switch (_column) {
-
-            case "first":
-
-                column = CustomerAccess.FIRST_NAME;
-
-                break;
-
-            case "last":
-
-                column = CustomerAccess.LAST_NAME;
-
-                break;
-
-            case "cNum":
-
-                column = CustomerAccess.CUSTOMER_ID;
-
-                break;
-            case "address":
-                column = CustomerAccess.ADDRESS;
-
-                break;
-
-        }
-    _handler.UpdateExistingCustomer(customer, column, newValue);
-        
-=======
     @Override
     public String toString() {
         return String.format("Customer #%d: %s %s", customerId, firstName, lastName);
->>>>>>> upstream/master
+
     }
 }
+
+
