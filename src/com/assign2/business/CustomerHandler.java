@@ -29,8 +29,13 @@ public class CustomerHandler {
 
     }
 
-    public void UpdateExistingCustomer() {
+    public void UpdateExistingCustomer(Customer _customer, String column, String newValue) {
         Utils.log_info("Updating existing customer information");
+        try {
+            CustomerAccess.updateCustomer(_customer.getCustomerId(), column, newValue);
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }
